@@ -1,0 +1,293 @@
+:root {
+  --yellow: #ffc107;
+  --blue: #00a2e0;
+  --purple: #003057;
+  --black: #2d2926;
+  --grey: #707372;
+  --pink: #d0016f;
+  --orange: #e77723;
+  --red: #ef333f;
+
+  --bg-blue: #e7f6fd;
+  --bg-yellow: #fefbee;
+
+  --text-color: #222323;
+
+  --highlight-yellow: #f9de80;
+  --highlight-blue: #7cd0ef;
+  --highlight-purple: #315878;
+  --highlight-black: #55534f;
+  --highlight-grey: #999d9d;
+  --highlight-pint: #d82e89;
+  --highlight-orange: #ebac7f;
+  --highlight-red: #f15d68;
+}
+
+@font-face {
+  font-family: "ITC";
+  src: url("asserts/itc_regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "ITC-DEMI";
+  font-weight: bold;
+  src: url("asserts/ITCAvantGardeStd-Demi.otf") format("opentype");
+}
+
+body {
+  font-family: "ITC", serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  animation: fadeIn 1s ease-in;
+  transition: opacity 1s ease-in;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap-0 {
+  gap: 10px;
+}
+
+.gap-1 {
+  gap: 20px;
+}
+
+.gap-2 {
+  gap: 30px;
+}
+
+.gap-3 {
+  gap: 40px;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.js {
+  justify-content: space-between;
+}
+
+.ja {
+  justify-content: space-around;
+}
+
+.jc {
+  justify-content: center;
+}
+.je {
+  justify-content: space-evenly;
+}
+
+.align-center {
+  align-items: center;
+  align-content: center;
+}
+
+/* .max {
+  width: 600px;
+  height: 400px;
+} */
+
+.viewContainer {
+  width: 360px;
+  height: 360px;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  color: var(--text-color);
+  transition: all 1s ease-in;
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+p,
+small {
+  font-family: arial;
+}
+
+ul {
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+[type="file"] {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 40px;
+}
+
+.output {
+  position: relative;
+  left: 0px;
+  bottom: 200px;
+  z-index: 10;
+}
+.hide {
+  display: none;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  transition: all 1s ease-in;
+  z-index: 100;
+
+  animation: spin 2s ease-in-out infinite;
+}
+.responsive {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 480px) {
+  .responsive {
+    flex-direction: column;
+    padding-top: 50px;
+  }
+}
+
+//animations
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 5s;
+  -webkit-animation: fadeIn 5s;
+  -moz-animation: fadeIn 5s;
+  -o-animation: fadeIn 5s;
+  -ms-animation: fadeIn 5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#form {
+  display: none;
+  animation: formFade 2s ease-in-out;
+  -moz-animation: formFade 2s ease-in-out; /* Firefox */
+  -webkit-animation: formFade 2s ease-in-out; /* Safari and Chrome */
+  -o-animation: formFade 2s ease-in-out; /* Opera */
+}
+
+@keyframes formFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes formFade {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes formFade {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
