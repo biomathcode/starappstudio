@@ -10,23 +10,46 @@
 
 // downlaod function
 
+const root = document.querySelector(":root");
+const colors = getComputedStyle(root);
+var canvas = document.getElementById("viewport");
+
+var context = canvas.getContext("2d");
+console.log("this si working css", colors.getPropertyValue("--bg-yellow"));
+
+document.body.style.background = `${colors.getPropertyValue("--bg-yellow")}`;
+
 var files;
 
 var selectedItem;
 
+const close_icon = document.getElementById("close_icon");
+
+const upload_label = document.getElementById("file-input-label");
+
+close_icon.addEventListener("click", (e) => {
+  e.preventDefault();
+  make_base();
+  const upload_logo = document.getElementById("upload_label");
+
+  const upload_icon = document.getElementById("upload_icon");
+
+  upload_label.style.pointerEvents = "none";
+
+  upload_logo.innerText = "UPLOAD LOGO";
+
+  close_icon.style.display = "none";
+
+  upload_icon.style.display = "block";
+
+  files = undefined;
+  // const file_input = document.getElementById("file-input");
+
+  // file_input.ariaDisabled = false;
+  // file_input.disabled = false;
+});
+
 const selectItemsData = [
-  {
-    name: "black",
-    color: "#2d2926",
-    highlightColor: "#eee",
-    fileUrl: "asserts/pink_umbrella.png",
-  },
-  {
-    name: "purple",
-    color: "#003057",
-    highlightColor: "#79a5c8",
-    fileUrl: "asserts/pink_umbrella.png",
-  },
   {
     name: "yellow",
     color: "#ffc107",
@@ -43,24 +66,6 @@ const selectItemsData = [
     name: "pink",
     color: "#d0016f",
     highlightColor: "#ffb6c1",
-    fileUrl: "asserts/pink_umbrella.png",
-  },
-  {
-    name: "orange",
-    color: "#e77723",
-    highlightColor: "#ffdb9a",
-    fileUrl: "asserts/pink_umbrella.png",
-  },
-  {
-    name: "grey",
-    color: "#707372",
-    highlightColor: "#cccccc",
-    fileUrl: "asserts/pink_umbrella.png",
-  },
-  {
-    name: "red",
-    color: "#ef333f",
-    highlightColor: "#ff9a9a",
     fileUrl: "asserts/pink_umbrella.png",
   },
 ];
@@ -88,7 +93,7 @@ selectItemsData.map((el) => {
     loader.style.display = "block";
     loader.style.fill = el.color;
 
-    selectedItem = el;
+    selectedItem = el.fileUrl;
 
     container.style.background = el.highlightColor;
 
@@ -108,15 +113,6 @@ selectItemsData.map((el) => {
   console.log(selectColor);
 });
 
-const root = document.querySelector(":root");
-const colors = getComputedStyle(root);
-var canvas = document.getElementById("viewport");
-
-var context = canvas.getContext("2d");
-console.log("this si working css", colors.getPropertyValue("--bg-yellow"));
-
-document.body.style.background = `${colors.getPropertyValue("--bg-yellow")}`;
-
 var download = function () {
   var link = document.createElement("a");
   link.download = "filename.png";
@@ -126,34 +122,48 @@ var download = function () {
 
 // loadfunction
 var loadFile = function (event) {
-  var logo_image = new Image();
+  if (event.target.files[0]) {
+    var logo_image = new Image();
+    const file_input = document.getElementById("file-input");
 
-  logo_image.src = URL.createObjectURL(event.target.files[0]);
-  console.log("this is the object source", logo_image.src);
+    // file_input.ariaDisabled = true;
+    // file_input.disabled = true;
 
-  const lable = document.getElementById("upload_label");
+    logo_image.src = URL.createObjectURL(event.target.files[0]);
+    console.log("this is the object source", logo_image.src);
 
-  lable.innerText = event.target.files[0].name;
+    const lable = document.getElementById("upload_label");
 
-  if (files === undefined) {
-    files = URL.createObjectURL(event.target.files[0]);
-    console.log("this is the file", files);
-    logo_image.onload = function () {
-      context.drawImage(
-        logo_image,
-        canvas.width / 2 - 22,
-        canvas.width / 2 + 70,
-        50,
-        50
+    const close_icon = document.getElementById("close_icon");
+
+    const upload_icon = document.getElementById("upload_icon");
+
+    upload_icon.style.display = "none";
+
+    close_icon.style.display = "flex";
+
+    lable.innerText = event.target.files[0].name;
+
+    if (files === undefined) {
+      files = URL.createObjectURL(event.target.files[0]);
+      console.log("this is the file", files);
+      logo_image.onload = function () {
+        context.drawImage(
+          logo_image,
+          canvas.width / 2 - 22,
+          canvas.width / 2 + 70,
+          50,
+          50
+        );
+      };
+    } else {
+      console.log(event.target.files[0]);
+      files = URL.createObjectURL(event.target.files[0]);
+      make_base(
+        selectedItem ? selectedItem : "asserts/blue_umbrella.png",
+        files
       );
-    };
-  } else {
-    console.log(event.target.files[0]);
-    files = URL.createObjectURL(event.target.files[0]);
-    make_base(
-      selectedItem ? selectedItem?.fileUrl : "asserts/blue_umbrella.png",
-      files
-    );
+    }
   }
 };
 
@@ -163,6 +173,8 @@ var loadFile = function (event) {
 
 function make_base(src = "asserts/blue_umbrella.png", data) {
   if (data === undefined) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     var base_image = new Image();
 
     base_image.width = "100px";

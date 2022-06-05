@@ -41,10 +41,10 @@
                 <p>Upload a logo for an instant preview. </p>
                 <small>.png and .jpg files only. Max file size is 5MB.</small>
                 <div class="file-input">
-                    <input type="file" name="file-input" id="file-input" class="file-input__input"
-                        onchange="loadFile(event)" />
+                    <input  type="file" name="file-input" id="file-input" class="file-input__input"
+                        onchange="loadFile(event);" />
                     <label id="file-input-label" class="file-input__label" for="file-input">
-                        <svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 22" width="24"
+                        <svg  id="upload_icon" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 22" width="24"
                             height="22" fill="#fff" xmlns="http://www.w3.org/2000/svg" version="1.1">
                             <path
                                 d="M23.1505 10.7255C22.7712 10.7255 22.4677 11.0277 22.4677 11.4056V17.5919C22.4677 19.2746 21.0919 20.6398 19.4076 20.6398H4.42576C2.73638 20.6398 1.36566 19.2695 1.36566 17.5919V11.3048C1.36566 10.927 1.06218 10.6247 0.682831 10.6247C0.30348 10.6247 0 10.927 0 11.3048V17.5919C0 20.0252 1.9878 22 4.42576 22H19.4076C21.8506 22 23.8333 20.0202 23.8333 17.5919V11.4056C23.8333 11.0328 23.5299 10.7255 23.1505 10.7255Z">
@@ -55,7 +55,13 @@
                         </svg>
 
 
-                        <span id="upload_label">UPLOAD LOGO</span></label>
+
+
+                        <span id="upload_label">UPLOAD LOGO</span>
+                        <svg id="close_icon" class="close_icon" style="display: none;"   width="15" height="15" viewBox="0 0 15 15" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </label>
+
+                    
                 </div>
 
 

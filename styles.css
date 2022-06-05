@@ -94,11 +94,6 @@ canvas {
   align-content: center;
 }
 
-/* .max {
-  width: 600px;
-  height: 400px;
-} */
-
 .viewContainer {
   width: 360px;
   height: 360px;
@@ -194,10 +189,11 @@ li {
 }
 
 .file-input__label {
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   margin: 20px;
+
+  pointer-events: none;
 
   font-size: 14px;
   font-weight: 600;
@@ -211,6 +207,24 @@ li {
 .file-input__label svg {
   height: 16px;
   margin-right: 4px;
+  cursor: pointer;
+  pointer-events: all;
+}
+.close_icon {
+  margin-left: 10px;
+  pointer: cursor;
+
+  z-index: 200;
+}
+
+.upload_icon {
+  padding: 20px;
+  border: 2px solid #eee;
+}
+
+.upload_icon:hover {
+  background-color: #b4b4b4;
+  color: #4b4b4b;
 }
 
 @media screen and (max-width: 480px) {
