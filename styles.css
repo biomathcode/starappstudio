@@ -128,19 +128,6 @@ li {
   list-style: none;
 }
 
-[type="file"] {
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  z-index: 10;
-  cursor: pointer;
-}
-
-.icon {
-  padding: 10px;
-  min-width: 40px;
-}
-
 .output {
   position: relative;
   left: 0px;
@@ -162,6 +149,68 @@ li {
 .responsive {
   display: flex;
   flex-direction: row;
+}
+
+.upload {
+  width: 100%;
+  height: 40px;
+  background: #444;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.icon {
+  pointer-events: none;
+  color: #fff;
+}
+
+.icon-label {
+  pointer-events: none;
+  width: 200px;
+  margin-left: 100px;
+  color: #fff;
+}
+
+.input-file {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-input__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  margin: 20px;
+}
+
+.file-input__label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin: 20px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  padding: 10px 12px;
+  background-color: var(--blue);
+}
+
+.file-input__label svg {
+  height: 16px;
+  margin-right: 4px;
 }
 
 @media screen and (max-width: 480px) {
@@ -257,15 +306,15 @@ li {
   }
 }
 
-#form {
+fade {
   display: none;
-  animation: formFade 2s ease-in-out;
-  -moz-animation: formFade 2s ease-in-out; /* Firefox */
-  -webkit-animation: formFade 2s ease-in-out; /* Safari and Chrome */
-  -o-animation: formFade 2s ease-in-out; /* Opera */
+  animation: fade 2s ease-in-out;
+  -moz-animation: fade 2s ease-in-out; /* Firefox */
+  -webkit-animation: fade 2s ease-in-out; /* Safari and Chrome */
+  -o-animation: fade 2s ease-in-out; /* Opera */
 }
 
-@keyframes formFade {
+@keyframes fade {
   from {
     opacity: 0;
   }
@@ -273,7 +322,7 @@ li {
     opacity: 1;
   }
 }
-@-moz-keyframes formFade {
+@-moz-keyframes fade {
   /* Firefox */
   from {
     opacity: 0;
@@ -282,7 +331,7 @@ li {
     opacity: 1;
   }
 }
-@-webkit-keyframes formFade {
+@-webkit-keyframes fade {
   /* Safari and Chrome */
   from {
     opacity: 0;

@@ -81,6 +81,10 @@ selectItemsData.map((el) => {
     const container = document.getElementById("container");
     const loader = document.getElementById("loader");
     const canvas = document.getElementById("viewport");
+
+    const buttonItem = document.getElementById("file-input-label");
+
+    buttonItem.style.backgroundColor = el.color;
     loader.style.display = "block";
     loader.style.fill = el.color;
 
@@ -126,6 +130,10 @@ var loadFile = function (event) {
 
   logo_image.src = URL.createObjectURL(event.target.files[0]);
   console.log("this is the object source", logo_image.src);
+
+  const lable = document.getElementById("upload_label");
+
+  lable.innerText = event.target.files[0].name;
 
   if (files === undefined) {
     files = URL.createObjectURL(event.target.files[0]);
