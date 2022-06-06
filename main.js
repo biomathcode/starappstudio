@@ -27,9 +27,18 @@ const close_icon = document.getElementById("close_icon");
 
 const upload_label = document.getElementById("file-input-label");
 
+// close button
+// removed the logo file
+// rerenders the canvas
+
 close_icon.addEventListener("click", (e) => {
   e.preventDefault();
-  make_base();
+
+  if (selectedItem) {
+    make_base(selectedItem);
+  } else {
+    make_base();
+  }
   const upload_logo = document.getElementById("upload_label");
 
   const upload_icon = document.getElementById("upload_icon");
@@ -71,6 +80,8 @@ const selectItemsData = [
 ];
 
 const selectColor = document.getElementById("select");
+
+// render selection items
 
 selectItemsData.map((el) => {
   const item = document.createElement("li");
@@ -122,47 +133,53 @@ var download = function () {
 
 // loadfunction
 var loadFile = function (event) {
-  if (event.target.files[0]) {
-    var logo_image = new Image();
-    const file_input = document.getElementById("file-input");
+  const fileSize = event.target.files[0].size / 1024 / 1024; //
 
-    // file_input.ariaDisabled = true;
-    // file_input.disabled = true;
+  if (fileSize > 5) {
+    alert("File size is Bigger than 5MB");
+  } else {
+    if (event.target.files[0]) {
+      var logo_image = new Image();
+      const file_input = document.getElementById("file-input");
 
-    logo_image.src = URL.createObjectURL(event.target.files[0]);
-    console.log("this is the object source", logo_image.src);
+      // file_input.ariaDisabled = true;
+      // file_input.disabled = true;
 
-    const lable = document.getElementById("upload_label");
+      logo_image.src = URL.createObjectURL(event.target.files[0]);
+      console.log("this is the object source", logo_image.src);
 
-    const close_icon = document.getElementById("close_icon");
+      const lable = document.getElementById("upload_label");
 
-    const upload_icon = document.getElementById("upload_icon");
+      const close_icon = document.getElementById("close_icon");
 
-    upload_icon.style.display = "none";
+      const upload_icon = document.getElementById("upload_icon");
 
-    close_icon.style.display = "flex";
+      upload_icon.style.display = "none";
 
-    lable.innerText = event.target.files[0].name;
+      close_icon.style.display = "flex";
 
-    if (files === undefined) {
-      files = URL.createObjectURL(event.target.files[0]);
-      console.log("this is the file", files);
-      logo_image.onload = function () {
-        context.drawImage(
-          logo_image,
-          canvas.width / 2 - 22,
-          canvas.width / 2 + 70,
-          50,
-          50
+      lable.innerText = event.target.files[0].name;
+
+      if (files === undefined) {
+        files = URL.createObjectURL(event.target.files[0]);
+        console.log("this is the file", files);
+        logo_image.onload = function () {
+          context.drawImage(
+            logo_image,
+            canvas.width / 2 - 22,
+            canvas.width / 2 + 70,
+            50,
+            50
+          );
+        };
+      } else {
+        console.log(event.target.files[0]);
+        files = URL.createObjectURL(event.target.files[0]);
+        make_base(
+          selectedItem ? selectedItem : "asserts/blue_umbrella.png",
+          files
         );
-      };
-    } else {
-      console.log(event.target.files[0]);
-      files = URL.createObjectURL(event.target.files[0]);
-      make_base(
-        selectedItem ? selectedItem : "asserts/blue_umbrella.png",
-        files
-      );
+      }
     }
   }
 };

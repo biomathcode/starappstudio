@@ -110,6 +110,9 @@ h1 {
   color: var(--text-color);
 }
 
+h4 {
+  margin: 0;
+}
 p,
 small {
   font-family: arial;
@@ -184,14 +187,17 @@ li {
   overflow: hidden;
   position: absolute;
   z-index: -1;
-
-  margin: 20px;
 }
 
 .file-input__label {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  margin: 20px;
+  margin-top: 20px;
+  justify-content: space-between;
+
+  min-width: 200px;
+
+  max-width: 300px;
 
   pointer-events: none;
 
@@ -211,10 +217,9 @@ li {
   pointer-events: all;
 }
 .close_icon {
-  margin-left: 10px;
+  position: relative;
   pointer: cursor;
-
-  z-index: 200;
+  z-index: 10;
 }
 
 .upload_icon {
@@ -222,6 +227,12 @@ li {
   border: 2px solid #eee;
 }
 
+.upload_label {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .upload_icon:hover {
   background-color: #b4b4b4;
   color: #4b4b4b;
